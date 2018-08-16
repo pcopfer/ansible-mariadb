@@ -1,0 +1,12 @@
+- name: Install server packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - mariadb-server
+  tags:
+    - apt
+    - db
+    - mariadb
+    - mariadb-server
+    - packages

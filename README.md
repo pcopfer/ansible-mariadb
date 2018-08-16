@@ -1,31 +1,33 @@
-Role Name
-=========
+pcopfer.mariadb
+===============
 
-A brief description of the role goes here.
+A simple role to install mariadb with some databases.
 
-Requirements
-------------
+WARNING
+-------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This Role does not implement good security
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- ``mariadb_bind_address: "127.0.0.1"`` Address mariadb listen to connections
+- ``ufw_mariadb_public: false`` Allow connections to mariadb in ufw
+- ``mariadb_install_client: false`` Install packages client on system
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      vars:
+         - mysql_databases:
+		- db_name: "database1"
+		  db_user: "user1"
+		  db_password: "Geheim1"
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: pcopfer.mariadb
 
 License
 -------
@@ -35,4 +37,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+pcopfer <christian-platz at pcopfer.de>

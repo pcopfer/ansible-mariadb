@@ -1,0 +1,14 @@
+- name: Install client packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - mariadb-client
+  when: mariadb_install_client
+  tags:
+    - apt
+    - db
+    - mariadb
+    - mariadb-client
+    - packages
+

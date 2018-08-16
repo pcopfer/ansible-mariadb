@@ -1,0 +1,17 @@
+---
+- name: Adding apt-keys
+  apt_key: "keyserver={{ item.server }} id={{ item.id }} state=present"
+  with_items:
+  - server: keyserver.ubuntu.com
+    id: 177F4010FE56CA3336300305F1656F24C74CD1D8
+  tags:
+    - db
+    - mariadb
+
+- name: Setting up repositories
+  apt_repository: "repo='{{ item }}' state=present"
+  with_items:
+  - deb [arch=amd64,i386,ppc64el] http://mirror2.hs-esslingen.de/mariadb/repo/10.1/{{ ansible_distribution|lower() }} {{ ansible_distribution_release }} main
+  tags:
+    - db
+    - mariadb

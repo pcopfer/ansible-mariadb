@@ -1,0 +1,31 @@
+- name: create a database
+  mysql_db:
+    name: "{{ item.db_name }}"
+    state: present
+    encoding: utf8
+  with_items: "{{ mysql_databases }}"
+  tags:
+    - db
+    - mariadb
+    - deploy
+
+- name: create database user
+  mysql_user:
+    name: "{{ item.db_user }}"
+    password: "{{ item.db_password }}"
+    priv: "{{ item.db_name }}.*:ALL"
+    host: '%'
+    state: present
+  with_items: "{{ mysql_databases }}"
+  tags:
+    - db
+    - mariadb
+    - deploy
+
+- name: create superuser
+  mysql_user:
+    name: root
+    password: "{{ vault_mysql_password }}"
+    host: localhost
+    priv: '*.*:ALL,GRANT'
+    state: present
