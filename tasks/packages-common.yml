@@ -1,8 +1,9 @@
 - name: Install server packages
   apt:
-    pkg: "{{ item }}"
+    name: "{{ packages }}"
     state: present
-  with_items:
+  vars:
+    packages:
     - python-mysqldb
   tags:
     - apt
