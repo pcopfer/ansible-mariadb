@@ -14,7 +14,3 @@
 - name: Setting up repositories
   include: "databases.yml"
   become: true
-
-- name: Punch hole in firewall
-  include: "ufw.yml"
-  become: true

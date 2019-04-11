@@ -1,8 +1,19 @@
+- name: create superuser
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    login_password: "{{ mysql_root_password }}"
+    host: localhost
+    priv: '*.*:ALL,GRANT'
+    state: present
+    check_implicit_admin: yes
+
 - name: create a database
   mysql_db:
     name: "{{ item.db_name }}"
     state: present
     encoding: utf8
+    login_password: "{{ mysql_root_password }}"
   with_items: "{{ mysql_databases }}"
   tags:
     - db
@@ -16,16 +27,10 @@
     priv: "{{ item.db_name }}.*:ALL"
     host: '%'
     state: present
+    login_password: "{{ mysql_root_password }}"
   with_items: "{{ mysql_databases }}"
   tags:
     - db
     - mariadb
     - deploy
 
-- name: create superuser
-  mysql_user:
-    name: root
-    password: "{{ vault_mysql_password }}"
-    host: localhost
-    priv: '*.*:ALL,GRANT'
-    state: present

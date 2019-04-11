@@ -12,8 +12,7 @@ This Role does not implement good security
 Role Variables
 --------------
 
-- ``mariadb_bind_address: "127.0.0.1"`` Address mariadb listen to connections
-- ``ufw_mariadb_public: false`` Allow connections to mariadb in ufw
+- ``mysql_root_password`` Mysql root password
 - ``mariadb_install_client: false`` Install packages client on system
 
 Example Playbook
