@@ -2,3 +2,4 @@
 mariadb_bind_address: "127.0.0.1"
 ufw_mariadb_public: false
 mariadb_install_client: false
+mysql_old_root_password: "{{ vault_mysql_password }}"

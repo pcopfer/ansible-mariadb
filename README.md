@@ -13,6 +13,7 @@ Role Variables
 --------------
 
 - ``mysql_root_password`` Mysql root password
+- ``mysql_old_root_password: vault_mysql_password`` Old Mysql root password
 - ``mariadb_install_client: false`` Install packages client on system
 
 Example Playbook
