@@ -1,8 +1,4 @@
 ---
-- name: Setting up repositories
-  include: "repositories.yml"
-  become: true
-
 - name: Installing common packages 
   include: "packages-common.yml"
   become: true
